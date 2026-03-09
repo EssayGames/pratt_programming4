@@ -8,3 +8,5 @@ Please make sure when you are using this repo that you are downloading materials
 * Section 02: use "TTH" branch
 
 These repos will be updated per class session, but it is up to individuals to update their project files if they miss class.
+
+This repo contains a standard `.gitignore` file.
