@@ -1,3 +1,30 @@
-[gd_scene format=3 uid="uid://y4bl3se34cj5"]
+[gd_scene load_steps=6 format=3 uid="uid://y4bl3se34cj5"]
+
+[ext_resource type="PackedScene" uid="uid://d1lxv768y4c5t" path="res://Models/room_large_prototype.tscn" id="2_4ousu"]
+[ext_resource type="PackedScene" uid="uid://d04orciwiqaum" path="res://Scenes/Player.tscn" id="2_6koui"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4ousu"]
+sky_top_color = Color(0.54218656, 0.7429667, 0.9633314, 1)
+sky_horizon_color = Color(0.8822434, 0.71022075, 0.5957505, 1)
+sky_curve = 0.05
+
+[sub_resource type="Sky" id="Sky_6koui"]
+sky_material = SubResource("ProceduralSkyMaterial_4ousu")
+
+[sub_resource type="Environment" id="Environment_3mrnv"]
+background_mode = 2
+sky = SubResource("Sky_6koui")
 
 [node name="Prototype" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("2_6koui")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0200902, 0)
+
+[node name="room-large2" parent="." instance=ExtResource("2_4ousu")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3mrnv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9625452, 0, 0.27112126, -0.25455144, 0.34423333, 0.9037184, -0.09332898, -0.9388841, 0.33134013, 0, 2.168706, 0)
+shadow_enabled = true
