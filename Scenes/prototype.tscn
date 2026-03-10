@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b46ve1xbaji61" path="res://Scenes/pillar.tscn" id="6_7kyyp"]
 [ext_resource type="PackedScene" uid="uid://045hstaogarl" path="res://Scenes/interact_obj.tscn" id="7_k3dp0"]
 [ext_resource type="PackedScene" uid="uid://2po10cymswg7" path="res://Scenes/gate_door.tscn" id="9_ma1ii"]
+[ext_resource type="PackedScene" uid="uid://bjtiifkgu305d" path="res://Scenes/onion.tscn" id="10_f3m8k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4ousu"]
 sky_top_color = Color(0.54218656, 0.7429667, 0.9633314, 1)
@@ -22,11 +23,10 @@ sky_material = SubResource("ProceduralSkyMaterial_4ousu")
 background_mode = 2
 sky = SubResource("Sky_6koui")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_f3m8k"]
-size = Vector3(5, 4, 7)
-
 [node name="Prototype" type="Node3D"]
 script = ExtResource("1_k3dp0")
+timer_amt = 10.0
+has_item = true
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_6koui")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.0200902, 0)
@@ -64,11 +64,8 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0,
 [node name="gate-door2" parent="." instance=ExtResource("9_ma1ii")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -10)
 
-[node name="Area3D" type="Area3D" parent="gate-door2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="gate-door2/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7020508e-07, 1.5, 0)
-shape = SubResource("BoxShape3D_f3m8k")
+[node name="onion" parent="." instance=ExtResource("10_f3m8k")]
+transform = Transform3D(3.5754995, 0, 0, 0, 3.5754995, 0, 0, 0, 3.5754995, -29.648329, 1.3771269, 0)
 
 [connection signal="interacted" from="pillar/interact_obj" to="." method="_door_open"]
-[connection signal="body_entered" from="gate-door2/Area3D" to="." method="_door_open_not_gate"]
+[connection signal="interacted" from="onion" to="." method="_got_item"]

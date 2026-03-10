@@ -6,6 +6,8 @@ const JUMP_VELOCITY = 4.5
 
 @export var mouse_sensitivity : float = 0.001
 
+signal raycast_col(col_body)
+
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -30,6 +32,13 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	#Base Raycasting functionality is checking collision
+	#and then returning the collider node
+	if $CameraPivot/Camera3D/RayCast3D.is_colliding():
+		var col_body = $CameraPivot/Camera3D/RayCast3D.get_collider()
+		#print(col_body.get_parent().name)
+		raycast_col.emit(col_body.get_parent().name)
 
 	
 func _input(event: InputEvent) -> void:
@@ -37,3 +46,4 @@ func _input(event: InputEvent) -> void:
 		rotation.y -= event.relative.x * mouse_sensitivity
 		$CameraPivot.rotation.x -= event.relative.y * mouse_sensitivity
 		$CameraPivot.rotation.x = clamp($CameraPivot.rotation.x, deg_to_rad(-65), deg_to_rad(65))
+		
