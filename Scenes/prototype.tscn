@@ -1,0 +1,71 @@
+[gd_scene load_steps=14 format=3 uid="uid://y4bl3se34cj5"]
+
+[ext_resource type="Script" uid="uid://dyqjde41kx4mw" path="res://Scripts/prototype_level.gd" id="1_k3dp0"]
+[ext_resource type="PackedScene" uid="uid://d1lxv768y4c5t" path="res://Models/room_large_prototype.tscn" id="2_4ousu"]
+[ext_resource type="PackedScene" uid="uid://d04orciwiqaum" path="res://Scenes/Player.tscn" id="2_6koui"]
+[ext_resource type="PackedScene" uid="uid://b4wpam0oj87bc" path="res://Scenes/corridor_wide.tscn" id="3_3mrnv"]
+[ext_resource type="PackedScene" uid="uid://c71jearwqvbvg" path="res://Scenes/corridor_end.tscn" id="4_uurmw"]
+[ext_resource type="PackedScene" uid="uid://d20hj0uxlacle" path="res://Scenes/gate.tscn" id="5_uurmw"]
+[ext_resource type="PackedScene" uid="uid://b46ve1xbaji61" path="res://Scenes/pillar.tscn" id="6_7kyyp"]
+[ext_resource type="PackedScene" uid="uid://045hstaogarl" path="res://Scenes/interact_obj.tscn" id="7_k3dp0"]
+[ext_resource type="PackedScene" uid="uid://2po10cymswg7" path="res://Scenes/gate_door.tscn" id="9_ma1ii"]
+[ext_resource type="PackedScene" uid="uid://bjtiifkgu305d" path="res://Scenes/onion.tscn" id="10_f3m8k"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4ousu"]
+sky_top_color = Color(0.54218656, 0.7429667, 0.9633314, 1)
+sky_horizon_color = Color(0.8822434, 0.71022075, 0.5957505, 1)
+sky_curve = 0.05
+
+[sub_resource type="Sky" id="Sky_6koui"]
+sky_material = SubResource("ProceduralSkyMaterial_4ousu")
+
+[sub_resource type="Environment" id="Environment_3mrnv"]
+background_mode = 2
+sky = SubResource("Sky_6koui")
+
+[node name="Prototype" type="Node3D"]
+script = ExtResource("1_k3dp0")
+timer_amt = 10.0
+has_item = true
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2_6koui")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.0200902, 0)
+
+[node name="room-large2" parent="." instance=ExtResource("2_4ousu")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3mrnv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9625452, 0, 0.27112126, -0.25455144, 0.34423333, 0.9037184, -0.09332898, -0.9388841, 0.33134013, 0, 2.168706, 0)
+shadow_enabled = true
+
+[node name="corridor-wide2" parent="." instance=ExtResource("3_3mrnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0)
+
+[node name="corridor-wide3" parent="." instance=ExtResource("3_3mrnv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 0)
+
+[node name="corridor-wide-end2" parent="." instance=ExtResource("4_uurmw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
+
+[node name="corridor-wide-end3" parent="." instance=ExtResource("4_uurmw")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -14)
+
+[node name="gate-metal-bars2" parent="." instance=ExtResource("5_uurmw")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, 0, 0)
+
+[node name="pillar" parent="." instance=ExtResource("6_7kyyp")]
+transform = Transform3D(0.45379624, 0, 0, 0, 0.45379624, 0, 0, 0, 0.45379624, -7.8120565, -0.8519292, -2.2600465)
+
+[node name="interact_obj" parent="pillar" instance=ExtResource("7_k3dp0")]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 4.952919, 0)
+
+[node name="gate-door2" parent="." instance=ExtResource("9_ma1ii")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -10)
+
+[node name="onion" parent="." instance=ExtResource("10_f3m8k")]
+transform = Transform3D(3.5754995, 0, 0, 0, 3.5754995, 0, 0, 0, 3.5754995, -29.648329, 1.3771269, 0)
+
+[connection signal="interacted" from="pillar/interact_obj" to="." method="_door_open"]
+[connection signal="interacted" from="onion" to="." method="_got_item"]
