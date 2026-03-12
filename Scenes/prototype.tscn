@@ -33,7 +33,7 @@ timer_amt = 10.0
 has_item = true
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_6koui")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.0200902, 0)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3, 1.0200902, 0)
 
 [node name="room-large2" parent="." instance=ExtResource("2_4ousu")]
 
@@ -121,6 +121,17 @@ transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 1.90
 
 [node name="gate-door-window3" parent="room-wide/room-small3" instance=ExtResource("14_40fcm")]
 transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 1.382812e-06, 0, -5.8941593)
+
+[node name="Markers" type="Node3D" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -14)
+
+[node name="Marker3D2" type="Marker3D" parent="Markers"]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 19.999998, 0, 14)
+
+[node name="Marker3D3" type="Marker3D" parent="Markers"]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 38, 0, 2.7736003e-06)
 
 [connection signal="interacted" from="pillar/interact_obj" to="." method="_door_open"]
 [connection signal="interacted" from="onion" to="." method="_got_item"]

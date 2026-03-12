@@ -4,15 +4,31 @@ extends Node3D
 var can_open_door : bool = false
 @export var has_item : bool = false
 
+#this variable loads in a "packed scene" (a scene that has not yet been loaded into the current scene)
+#this packed scene can be used for instantiation in this scene
+#and it is loaded as an node scene tree reference
+var chest = load("res://Scenes/chest.tscn")
+
+#the @onready keyword is used to set a variable when this scene "enters" or is loaded
+#$Markers.get_children() returns an array of nodes that get loaded into the "markers" varaible
+@onready var markers = $Markers.get_children()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#connecting the raycast_col signal from the player.gd script
 	#passing that into the _inspect_raycast function below
 	$Player.raycast_col.connect(_inspect_raycast)
-
 	
-	pass # Replace with function body.
+	#var current_marker = markers.pick_random()
+	#var c = chest.instantiate()
+	#current_marker.add_child(c)
+	
+	#for loops use readable text where the first "variable" in the logic can be any naming convention you want
+	#this loop goes through every element in the "markers" array (created in @onready) and adds an instantiated chest scene
+	for m in markers:
+		var c = chest.instantiate()
+		m.add_child(c)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,4 +79,6 @@ func _inspect_raycast(node):
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and can_open_door and has_item:
 		_door_no_gate_open()
+	if event.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
 	

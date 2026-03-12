@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="item" load_steps=3 format=3 uid="uid://dntbx1b5xqu0"]
+
+[ext_resource type="Script" uid="uid://cmo4jprnitj1v" path="res://treasure_items/item.gd" id="1_55dv5"]
+[ext_resource type="Texture2D" uid="uid://cbdtguirm5d0n" path="res://Sprites/torch.png" id="1_f147q"]
+
+[resource]
+script = ExtResource("1_55dv5")
+item_name = "torch"
+icon = ExtResource("1_f147q")
+metadata/_custom_type_script = "uid://cmo4jprnitj1v"
