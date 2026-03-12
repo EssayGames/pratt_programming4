@@ -4,11 +4,21 @@ extends Node3D
 var can_open_door : bool = false
 @export var has_item : bool = false
 
+@onready var marker_array = $Markers.get_children()
+@onready var rand_marker
+
+var chest = load("res://Scenes/chest.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#connecting the raycast_col signal from the player.gd script
 	#passing that into the _inspect_raycast function below
 	$Player.raycast_col.connect(_inspect_raycast)
+	
+	rand_marker = marker_array.pick_random()
+	var c = chest.instantiate()
+	rand_marker.add_child(c)
+	
 	pass # Replace with function body.
 
 

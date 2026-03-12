@@ -1,15 +1,19 @@
-[gd_scene load_steps=14 format=3 uid="uid://y4bl3se34cj5"]
+[gd_scene load_steps=18 format=3 uid="uid://y4bl3se34cj5"]
 
 [ext_resource type="Script" uid="uid://dyqjde41kx4mw" path="res://Scripts/prototype_level.gd" id="1_k3dp0"]
 [ext_resource type="PackedScene" uid="uid://d1lxv768y4c5t" path="res://Models/room_large_prototype.tscn" id="2_4ousu"]
 [ext_resource type="PackedScene" uid="uid://d04orciwiqaum" path="res://Scenes/Player.tscn" id="2_6koui"]
 [ext_resource type="PackedScene" uid="uid://b4wpam0oj87bc" path="res://Scenes/corridor_wide.tscn" id="3_3mrnv"]
+[ext_resource type="PackedScene" uid="uid://vichtwg0buj" path="res://Scenes/template_wall.tscn" id="4_bsdhg"]
 [ext_resource type="PackedScene" uid="uid://c71jearwqvbvg" path="res://Scenes/corridor_end.tscn" id="4_uurmw"]
 [ext_resource type="PackedScene" uid="uid://d20hj0uxlacle" path="res://Scenes/gate.tscn" id="5_uurmw"]
 [ext_resource type="PackedScene" uid="uid://b46ve1xbaji61" path="res://Scenes/pillar.tscn" id="6_7kyyp"]
 [ext_resource type="PackedScene" uid="uid://045hstaogarl" path="res://Scenes/interact_obj.tscn" id="7_k3dp0"]
 [ext_resource type="PackedScene" uid="uid://2po10cymswg7" path="res://Scenes/gate_door.tscn" id="9_ma1ii"]
 [ext_resource type="PackedScene" uid="uid://bjtiifkgu305d" path="res://Scenes/onion.tscn" id="10_f3m8k"]
+[ext_resource type="PackedScene" uid="uid://dsb6cnodr4b21" path="res://Scenes/room_wide.tscn" id="12_x2k0h"]
+[ext_resource type="PackedScene" uid="uid://cp35b1khqnfom" path="res://Scenes/room_small.tscn" id="13_2mp60"]
+[ext_resource type="PackedScene" uid="uid://c2bi3ffd2loh0" path="res://Scenes/gate_door_window.tscn" id="14_40fcm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4ousu"]
 sky_top_color = Color(0.54218656, 0.7429667, 0.9633314, 1)
@@ -32,6 +36,9 @@ has_item = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.0200902, 0)
 
 [node name="room-large2" parent="." instance=ExtResource("2_4ousu")]
+
+[node name="template-wall" parent="room-large2" instance=ExtResource("4_bsdhg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_3mrnv")
@@ -66,6 +73,65 @@ transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0
 
 [node name="onion" parent="." instance=ExtResource("10_f3m8k")]
 transform = Transform3D(3.5754995, 0, 0, 0, 3.5754995, 0, 0, 0, 3.5754995, -29.648329, 1.3771269, 0)
+
+[node name="room-wide" parent="." instance=ExtResource("12_x2k0h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+
+[node name="room-small" parent="room-wide" instance=ExtResource("13_2mp60")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="template-wall" parent="room-wide/room-small" instance=ExtResource("4_bsdhg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 0)
+
+[node name="template-wall2" parent="room-wide/room-small" instance=ExtResource("4_bsdhg")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -6, 0, 9.536743e-07)
+
+[node name="template-wall3" parent="room-wide/room-small" instance=ExtResource("4_bsdhg")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 1.9073486e-06, 0, 6)
+
+[node name="gate-door-window" parent="room-wide/room-small" instance=ExtResource("14_40fcm")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -6)
+
+[node name="room-small2" parent="room-wide" instance=ExtResource("13_2mp60")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16, 0, -6.993822e-07)
+
+[node name="template-wall" parent="room-wide/room-small2" instance=ExtResource("4_bsdhg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 0)
+
+[node name="template-wall2" parent="room-wide/room-small2" instance=ExtResource("4_bsdhg")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -6, 0, 9.536743e-07)
+
+[node name="template-wall3" parent="room-wide/room-small2" instance=ExtResource("4_bsdhg")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 1.9073486e-06, 0, 6)
+
+[node name="gate-door-window2" parent="room-wide/room-small2" instance=ExtResource("14_40fcm")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.10583985, 0, -6)
+
+[node name="room-small3" parent="room-wide" instance=ExtResource("13_2mp60")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8.662515e-07, 0, -12)
+
+[node name="template-wall" parent="room-wide/room-small3" instance=ExtResource("4_bsdhg")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 0)
+
+[node name="template-wall2" parent="room-wide/room-small3" instance=ExtResource("4_bsdhg")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -6, 0, 9.536743e-07)
+
+[node name="template-wall3" parent="room-wide/room-small3" instance=ExtResource("4_bsdhg")]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 1.9073486e-06, 0, 6)
+
+[node name="gate-door-window3" parent="room-wide/room-small3" instance=ExtResource("14_40fcm")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 1.382812e-06, 0, -5.8941593)
+
+[node name="Markers" type="Node3D" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="Markers"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20.020235, 0, 14.244982)
+
+[node name="Marker3D2" type="Marker3D" parent="Markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.020235, 0, -13.755018)
+
+[node name="Marker3D3" type="Marker3D" parent="Markers"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 38.020233, 0, 0.24498177)
 
 [connection signal="interacted" from="pillar/interact_obj" to="." method="_door_open"]
 [connection signal="interacted" from="onion" to="." method="_got_item"]
