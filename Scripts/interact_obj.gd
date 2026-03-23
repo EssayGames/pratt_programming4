@@ -1,4 +1,4 @@
-extends MeshInstance3D
+extends Node3D
 
 var can_interact : bool = false
 signal interacted

@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjtiifkgu305d"]
+
+[ext_resource type="PackedScene" uid="uid://2kmdq8vlf17i" path="res://Models/Kenney/Food/onion.glb" id="1_lyisc"]
+[ext_resource type="Script" uid="uid://bdachsa0m7i4u" path="res://Scripts/interact_obj.gd" id="2_uic3q"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uic3q"]
+radius = 0.7214343
+
+[sub_resource type="Animation" id="Animation_1k7g3"]
+resource_name = "bob_cycle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("onion:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.106604874, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0wwri"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("onion:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wc522"]
+_data = {
+&"RESET": SubResource("Animation_0wwri"),
+&"bob_cycle": SubResource("Animation_1k7g3")
+}
+
+[node name="onion2" instance=ExtResource("1_lyisc")]
+script = ExtResource("2_uic3q")
+
+[node name="Area3D" type="Area3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+shape = SubResource("SphereShape3D_uic3q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_wc522")
+}
+autoplay = "bob_cycle"
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

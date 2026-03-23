@@ -22,6 +22,3 @@ shape = SubResource("ConcavePolygonShape3D_nmwia")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="gate-door/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_b8hyq")
-
-[node name="AnimationPlayer" parent="." index="1"]
-unique_name_in_owner = true
