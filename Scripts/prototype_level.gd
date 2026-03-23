@@ -4,12 +4,23 @@ extends Node3D
 var can_open_door : bool = false
 @export var has_item : bool = false
 
+var locations
+var chest = load("res://Scenes/chest.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#connecting the raycast_col signal from the player.gd script
 	#passing that into the _inspect_raycast function below
 	$Player.raycast_col.connect(_inspect_raycast)
+	
+	locations = $Markers.get_children()
+	#var l = locations.pick_random()
+	#for loop naming conventions use for ____ in ARRAY____
+	#the first "blank" in the loop can be any name you want, OR it can be a certain data type
+	#Plain English: "For _element_ in _Array_" where element can be whatever name you want
+	for child in locations:
+		var c = chest.instantiate()
+		child.add_child(c)
 	pass # Replace with function body.
 
 
@@ -61,4 +72,7 @@ func _inspect_raycast(node):
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and can_open_door and has_item:
 		_door_no_gate_open()
+	if event.is_action_pressed("restart"):
+		PlayerInventory._empty_inventory()
+		get_tree().reload_current_scene()
 	

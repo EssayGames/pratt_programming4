@@ -33,7 +33,7 @@ timer_amt = 10.0
 has_item = true
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("2_6koui")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.0200902, 0)
+transform = Transform3D(1.1920929e-07, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 1.1920929e-07, 0, 1.0200902, 0)
 
 [node name="room-large2" parent="." instance=ExtResource("2_4ousu")]
 

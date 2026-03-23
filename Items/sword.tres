@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="item" load_steps=3 format=3 uid="uid://7neygaronybo"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://rr1gg5n14738"]
 
 [ext_resource type="Texture2D" uid="uid://cwmsjfmp7eveu" path="res://Sprites/swrod.png" id="1_faw48"]
-[ext_resource type="Script" uid="uid://umr42od4kaoc" path="res://Items/item.gd" id="1_owsk0"]
+[ext_resource type="Script" uid="uid://citd30audpcmc" path="res://Items/item.gd" id="1_owsk0"]
 
 [resource]
 script = ExtResource("1_owsk0")
 item_name = "Sword"
 icon = ExtResource("1_faw48")
-metadata/_custom_type_script = "uid://umr42od4kaoc"
+metadata/_custom_type_script = "uid://citd30audpcmc"
